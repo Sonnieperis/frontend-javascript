@@ -10,7 +10,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'dist'), // serve files from dist
     },
-    port: 8081,
+    port: 8082,
     open: true, // automatically opens browser
     hot: true,
   },
