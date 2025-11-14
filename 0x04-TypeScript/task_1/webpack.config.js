@@ -1,39 +1,43 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const path = require('path');
 
 module.exports = {
-  entry: "./js/main.ts",
-  devtool: "inline-source-map",
-
+  mode: 'development', // ensures dev mode
+  entry: {
+    main: './js/main.ts', // your TypeScript entry file
+  },
+  devtool: 'inline-source-map', // useful for debugging
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'), // serve files from dist
+    },
+    port: 8081,
+    open: true, // automatically opens browser
+    hot: true,
+  },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: "ts-loader",
-        options: {
-          transpileOnly: true
-        }
-      }
-    ]
+        test: /\.ts$/,       // handle TypeScript files
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,      // optional if you use CSS/Sass
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: ['.ts', '.js'], // import without specifying extensions
   },
-  devServer: {
-    static: "./dist"
-  },
-  plugins: [
-    new ForkTsCheckerWebpackPlugin(),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: "Task 1 - Teacher Interface"
-    })
-  ],
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
-    
-  }
+    filename: '[name].bundle.js', // prevents multiple chunks conflict
+    path: path.resolve(__dirname, 'dist'),
+    clean: true, // clears old bundles on rebuild
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all', // separates vendor code from main
+    },
+  },
 };
