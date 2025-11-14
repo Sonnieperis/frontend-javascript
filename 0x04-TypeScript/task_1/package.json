@@ -1,0 +1,20 @@
+{
+  "name": "typescript_task1",
+  "version": "1.0.0",
+  "description": "Task 1 - Teacher Interface",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "build": "webpack",
+    "start-dev": "webpack-dev-server --open"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.4",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
