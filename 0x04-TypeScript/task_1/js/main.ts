@@ -56,3 +56,41 @@ function prettyPrint(label: string, obj: object) {
 
 prettyPrint('Teacher 3', teacher3);
 prettyPrint('Director 1', director1);
+// Task 4
+
+// Interface describing the constructor
+interface StudentConstructor {
+  firstName: string;
+  lastName: string;
+}
+
+// Interface describing the class
+interface StudentInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+// Class implementation
+class StudentClass implements StudentInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor({ firstName, lastName }: StudentConstructor) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Test
+const student1 = new StudentClass({ firstName: "Muthoni", lastName: "Mwangi" });
+console.log(student1.displayName());
+console.log(student1.workOnHomework());
+
